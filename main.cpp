@@ -1,7 +1,7 @@
 #include <iostream>
 
-using namespace std;
+#include "persistence/all.h"
 
 int main() {
-  cout << "Hello!" << endl;
+  Persistence::get("bmp")->load("something");
 }
