@@ -7,12 +7,12 @@ namespace Persistence {
 class JpegPersister : public Persister {
 public:
     Model::Image* load(const char *fileName) {
-        std::cout << "Loading jpeg" << std::endl;
+        // Not implemented.
         return new Model::Image(0, 0);
     }
 
     void save(Model::Image *image, const char *fileName) {
-        std::cout << "Saving jpeg" << std::endl;
+        // Not implemented.
     }
 };
 }

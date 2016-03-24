@@ -12,8 +12,8 @@ public:
 
         Model::Image *image = new Model::Image(bmp.width(), bmp.height());
 
-        for (std::size_t y = 0; y < bmp.height(); ++y)        {
-            for (std::size_t x = 0; x < bmp.width(); ++x) {
+        for (unsigned x = 0; x < bmp.width(); ++x) {
+            for (unsigned y = 0; y < bmp.height(); ++y) {
                 unsigned char red, green, blue;
                 bmp.get_pixel(x, y, red, green, blue);
 
@@ -29,8 +29,8 @@ public:
     void save(Model::Image *image, const char *fileName) {
         bitmap_image bmp(image->width(), image->height());
 
-        for (std::size_t y = 0; y < bmp.height(); ++y)        {
-            for (std::size_t x = 0; x < bmp.width(); ++x) {
+        for (unsigned x = 0; x < bmp.width(); ++x) {
+            for (unsigned y = 0; y < bmp.height(); ++y) {
                 bmp.set_pixel(x, y,
                               image->red(x, y),
                               image->green(x, y),

@@ -17,8 +17,8 @@ public:
         Model::Color *greens = new Model::Color[image->width() * image->height()];
         Model::Color *blues = new Model::Color[image->width() * image->height()];
 
-        for(unsigned int x=0; x < image->width(); x++) {
-            for(unsigned int y = 0; y < image->height(); y++) {
+        for(unsigned x=0; x < image->width(); x++) {
+            for(unsigned y = 0; y < image->height(); y++) {
                 double red = 0.0, green = 0.0, blue = 0.0;
 
                 red += image->red(x, y)*kernel[1][1];
@@ -79,8 +79,8 @@ public:
             }
         }
 
-        for(unsigned int x=0; x < image->width(); x++) {
-            for(unsigned int y = 0; y < image->height(); y++) {
+        for(unsigned x=0; x < image->width(); x++) {
+            for(unsigned y = 0; y < image->height(); y++) {
                 image->setRed(x, y, reds[x * image->height() + y]);
                 image->setGreen(x, y, greens[x * image->height() + y]);
                 image->setBlue(x, y, blues[x * image->height() + y]);
