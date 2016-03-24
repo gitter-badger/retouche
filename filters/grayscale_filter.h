@@ -4,11 +4,11 @@
 #include "../persistence/persister.h"
 
 namespace Filters {
-  class GrayscaleFilter : public Filter {
-    public:
-      void apply(Persistence::Image *image) {
-      }
-  };
+class GrayscaleFilter : public Filter {
+public:
+    void apply(Persistence::Image *image) {
+    }
+};
 }
 
 #endif

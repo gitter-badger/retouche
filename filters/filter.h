@@ -4,10 +4,10 @@
 #include "../persistence/persister.h"
 
 namespace Filters {
-  class Filter {
-    public:
-      virtual void apply(Persistence::Image *image) = 0;
-  };
+class Filter {
+public:
+    virtual void apply(Persistence::Image *image) = 0;
+};
 }
 
 #endif

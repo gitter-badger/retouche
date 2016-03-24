@@ -1,3 +1,9 @@
 # Compiled program
 *.o
 retouche
+
+# OS X
+.DS_Store
+
+# Samples
+samples/*

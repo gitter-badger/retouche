@@ -2,14 +2,14 @@
 #define PERSISTER_FACTORY_H
 
 namespace Persistence {
-  Persister* get(const std::string &fileType) {
+Persister* get(const std::string &fileType) {
     if (fileType == "bmp") {
-      return new BitmapPersister;
+        return new BitmapPersister;
     } else if (fileType == "jpeg") {
-      return new JpegPersister;
+        return new JpegPersister;
     }
     return nullptr;
-  }
+}
 }
 
 #endif

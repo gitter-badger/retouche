@@ -2,12 +2,12 @@
 #define FILTER_FACTORY_H
 
 namespace Filters {
-  Filter* get(const std::string &type) {
+Filter* get(const std::string &type) {
     if (type == "grayscale") {
-      return new GrayscaleFilter;
+        return new GrayscaleFilter;
     }
     return nullptr;
-  }
+}
 }
 
 #endif

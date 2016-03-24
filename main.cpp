@@ -4,32 +4,31 @@
 #include "persistence/all.h"
 #include "filters/all.h"
 
-using namespace std;
-
 class Retouche {
-  public:
+public:
     void execute(const char *command, const char *value) {
-      if (strcmp(command, "read") == 0) {
-        persister = Persistence::get(value);
-      } else if (strcmp(command, "from") == 0) {
-        image = persister->load(value);
-      } else if (strcmp(command, "apply") == 0) {
-        Filters::get(value)->apply(image);
-      } else if (strcmp(command, "write") == 0) {
-        persister = Persistence::get(value);
-      } else if (strcmp(command, "to") == 0) {
-        persister->save(image, value);
-      }
+        if (strcmp(command, "read") == 0) {
+            persister = Persistence::get(value);
+        } else if (strcmp(command, "from") == 0) {
+            image = persister->load(value);
+        } else if (strcmp(command, "apply") == 0) {
+            Filters::get(value)->apply(image);
+        } else if (strcmp(command, "write") == 0) {
+            persister = Persistence::get(value);
+        } else if (strcmp(command, "to") == 0) {
+            persister->save(image, value);
+        }
     }
-  private:
+private:
     Persistence::Persister *persister;
     Persistence::Image *image;
 };
 
+
 int main(int argc, char **argv) {
-  Retouche retouche;
-  for (int i = 1; i < argc; ++i) {
-    char *command = strtok(argv[i], ":"), *value = strtok(nullptr, ":");
-    retouche.execute(command, value);
-  }
+    Retouche retouche;
+    for (int i = 1; i < argc; ++i) {
+        char *command = strtok(argv[i], ":"), *value = strtok(nullptr, ":");
+        retouche.execute(command, value);
+    }
 }
