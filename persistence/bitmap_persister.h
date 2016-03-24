@@ -27,14 +27,14 @@ public:
     }
 
     void save(Model::Image *image, const char *fileName) {
-        bitmap_image bmp(image->getWidth(), image->getHeight());
+        bitmap_image bmp(image->width(), image->height());
 
         for (std::size_t y = 0; y < bmp.height(); ++y)        {
             for (std::size_t x = 0; x < bmp.width(); ++x) {
                 bmp.set_pixel(x, y,
-                              image->getRed(x, y),
-                              image->getGreen(x, y),
-                              image->getBlue(x, y));
+                              image->red(x, y),
+                              image->green(x, y),
+                              image->blue(x, y));
             }
         }
 
