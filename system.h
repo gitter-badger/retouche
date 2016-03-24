@@ -4,14 +4,17 @@
 #include "model/image.h"
 #include "persistence/persister.h"
 
-#define stop(message) std::cerr << "ERROR: " << message << std::endl; exit(EXIT_FAILURE);
-#define nullcheck(var, message) if (var == nullptr) { stop(message) }
-
 class System {
 public:
     void execute(const char *command, const char *value);
 
 private:
+    void read(const char *value);
+    void from(const char *value);
+    void apply(const char *value);
+    void write(const char *value);
+    void to(const char *value);
+
     Persistence::Persister *persister;
     Model::Image *image;
 };

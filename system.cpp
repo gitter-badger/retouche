@@ -5,23 +5,41 @@
 #include "persistence/factory.h"
 #include "filter/factory.h"
 
-void System::execute(const char *command, const char *value) {
-    if (strcmp(command, "read") == 0) {
-        persister = Persistence::get(value);
-        nullcheck(persister, "unknown read format '" << value << "'")
-    } else if (strcmp(command, "from") == 0) {
-        image = persister->load(value);
-    } else if (strcmp(command, "apply") == 0) {
-        Filter::Operation *operation = Filter::get(value);
-        nullcheck(operation, "unknown filter '" << value << "'")
+#define handle(name) if (strcmp(command, "name") == 0) { name(value); return; }
+#define terminate(message) std::cerr << "ERROR: " << message << std::endl; exit(EXIT_FAILURE);
+#define nullcheck(var, message) if (var == nullptr) { terminate(message) }
 
-        operation->apply(image);
-    } else if (strcmp(command, "write") == 0) {
-        persister = Persistence::get(value);
-        nullcheck(persister, "unknown write format '" << value << "'")
-    } else if (strcmp(command, "to") == 0) {
-        persister->save(image, value);
-    } else {
-        stop("unknown command '" << command << "'")
-    }
+void System::execute(const char *command, const char *value) {
+    handle(read)
+    handle(from)
+    handle(apply)
+    handle(write)
+    handle(to)
+
+    terminate("unknown command '" << command << "'")
+}
+
+void System::read(const char *value) {
+    persister = Persistence::get(value);
+    nullcheck(persister, "unknown read format '" << value << "'")
+}
+
+void System::from(const char *value) {
+    image = persister->load(value);
+}
+
+void System::apply(const char *value) {
+    Filter::Operation *operation = Filter::get(value);
+    nullcheck(operation, "unknown filter '" << value << "'")
+
+    operation->apply(image);
+}
+
+void System::write(const char *value) {
+    persister = Persistence::get(value);
+    nullcheck(persister, "unknown write format '" << value << "'")
+}
+
+void System::to(const char *value) {
+    persister->save(image, value);
 }
