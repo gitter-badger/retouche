@@ -5,6 +5,8 @@ namespace Filters {
 Filter* get(const std::string &type) {
     if (type == "grayscale") {
         return new GrayscaleFilter;
+    } else if (type == "blur") {
+        return new BlurFilter;
     }
     return nullptr;
 }
