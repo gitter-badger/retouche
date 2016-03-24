@@ -1,15 +1,12 @@
 #ifndef BLUR_FILTER_H
 #define BLUR_FILTER_H
 
-#include <thread>
-#include <cmath>
-
-#include "../persistence/persister.h"
+#include "../model/image.h"
 
 namespace Filters {
 class BlurFilter : public Filter {
 public:
-    void apply(Persistence::Image *image) {
+    void apply(Model::Image *image) {
         float kernel[3][3] = {
             0.0625, 0.125, 0.0625,
             0.125, 0.25, 0.125,

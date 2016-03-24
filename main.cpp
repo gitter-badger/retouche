@@ -1,8 +1,9 @@
 #include <iostream>
 #include <cstring>
 
-#include "persistence/all.h"
-#include "filters/all.h"
+#include "model/image.h"
+#include "persistence/factory.h"
+#include "filters/factory.h"
 
 class Retouche {
 public:
@@ -21,7 +22,7 @@ public:
     }
 private:
     Persistence::Persister *persister;
-    Persistence::Image *image;
+    Model::Image *image;
 };
 
 

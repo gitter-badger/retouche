@@ -3,12 +3,12 @@
 
 #include <thread>
 
-#include "../persistence/persister.h"
+#include "../model/image.h"
 
 namespace Filters {
 class GrayscaleFilter : public Filter {
 public:
-    void apply(Persistence::Image *image) {
+    void apply(Model::Image *image) {
         unsigned int poolSize = std::thread::hardware_concurrency();
         std::thread *pool = new std::thread[poolSize];
 
@@ -30,7 +30,7 @@ public:
     }
 
 private:
-    static void luminosity(Persistence::Image *image, unsigned int startX, unsigned int endX) {
+    static void luminosity(Model::Image *image, unsigned int startX, unsigned int endX) {
         for (unsigned int x = startX; x < endX; x++) {
             for (unsigned int y = 0; y < image->getHeight(); y++) {
                 unsigned char grayscaled = 0.21 * image->getRed(x, y) +

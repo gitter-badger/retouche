@@ -1,12 +1,12 @@
 #ifndef FILTER_H
 #define FILTER_H
 
-#include "../persistence/persister.h"
+#include "../model/image.h"
 
 namespace Filters {
 class Filter {
 public:
-    virtual void apply(Persistence::Image *image) = 0;
+    virtual void apply(Model::Image *image) = 0;
 };
 }
 
