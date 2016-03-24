@@ -4,6 +4,7 @@
 #include "filter.h"
 #include "grayscale_filter.h"
 #include "blur_filter.h"
+#include "inverse_filter.h"
 
 namespace Filter {
 Operation* get(const std::string &type) {
@@ -11,6 +12,8 @@ Operation* get(const std::string &type) {
         return new GrayscaleFilter;
     } else if (type == "blur") {
         return new BlurFilter;
+    } else if (type == "inverse") {
+        return new InverseFilter;
     }
     return nullptr;
 }
