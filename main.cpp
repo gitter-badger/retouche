@@ -1,35 +1,11 @@
-#include <iostream>
 #include <cstring>
 
-#include "model/image.h"
-#include "persistence/factory.h"
-#include "filter/factory.h"
-
-class Retouche {
-public:
-    void execute(const char *command, const char *value) {
-        if (strcmp(command, "read") == 0) {
-            persister = Persistence::get(value);
-        } else if (strcmp(command, "from") == 0) {
-            image = persister->load(value);
-        } else if (strcmp(command, "apply") == 0) {
-            Filter::get(value)->apply(image);
-        } else if (strcmp(command, "write") == 0) {
-            persister = Persistence::get(value);
-        } else if (strcmp(command, "to") == 0) {
-            persister->save(image, value);
-        }
-    }
-private:
-    Persistence::Persister *persister;
-    Model::Image *image;
-};
-
+#include "system.h"
 
 int main(int argc, char **argv) {
-    Retouche retouche;
+    System system;
     for (int i = 1; i < argc; ++i) {
         char *command = strtok(argv[i], ":"), *value = strtok(nullptr, ":");
-        retouche.execute(command, value);
+        system.execute(command, value);
     }
 }
