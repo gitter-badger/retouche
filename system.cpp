@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <exception>
 
 #include "system.h"
 #include "persistence/factory.h"
@@ -25,14 +26,22 @@ void System::read(const char *value) {
 }
 
 void System::from(const char *value) {
-    image = persister->load(value);
+    try {
+        image = persister->load(value);
+    } catch (std::exception& e) {
+        terminate(e.what())
+    }
 }
 
 void System::apply(const char *value) {
     Filter::Operation *operation = Filter::get(value);
     nullcheck(operation, "unknown filter '" << value << "'")
 
-    operation->apply(image);
+    try {
+        operation->apply(image);
+    } catch (std::exception& e) {
+        terminate(e.what())
+    }
 }
 
 void System::write(const char *value) {
@@ -41,5 +50,9 @@ void System::write(const char *value) {
 }
 
 void System::to(const char *value) {
-    persister->save(image, value);
+    try {
+        persister->save(image, value);
+    } catch (std::exception& e) {
+        terminate(e.what())
+    }
 }

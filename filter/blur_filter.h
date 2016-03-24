@@ -1,6 +1,7 @@
 #ifndef BLUR_FILTER_H
 #define BLUR_FILTER_H
 
+#include "../core/sized_array.h"
 #include "../model/image.h"
 
 namespace Filter {
@@ -13,9 +14,9 @@ public:
             {0.0625, 0.125, 0.0625,}
         };
 
-        Model::Color *reds = new Model::Color[image->width() * image->height()];
-        Model::Color *greens = new Model::Color[image->width() * image->height()];
-        Model::Color *blues = new Model::Color[image->width() * image->height()];
+        SizedArray<Model::Color> reds(image->width() * image->height()),
+                   greens(image->width() * image->height()),
+                   blues(image->width() * image->height());
 
         for(int x = 0; x < image->width(); x++) {
             for(int y = 0; y < image->height(); y++) {
@@ -39,13 +40,9 @@ public:
             }
         }
 
-        for(unsigned x=0; x < image->width(); x++) {
-            for(unsigned y = 0; y < image->height(); y++) {
-                image->setRed(x, y, reds[x * image->height() + y]);
-                image->setGreen(x, y, greens[x * image->height() + y]);
-                image->setBlue(x, y, blues[x * image->height() + y]);
-            }
-        }
+        image->setReds(reds);
+        image->setGreens(greens);
+        image->setBlues(blues);
     }
 };
 }
