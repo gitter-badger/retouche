@@ -5,7 +5,7 @@
 #include "persistence/factory.h"
 #include "filter/factory.h"
 
-#define handle(name) if (strcmp(command, "name") == 0) { name(value); return; }
+#define handle(name) if (strcmp(command, #name) == 0) { name(value); return; }
 #define terminate(message) std::cerr << "ERROR: " << message << std::endl; exit(EXIT_FAILURE);
 #define nullcheck(var, message) if (var == nullptr) { terminate(message) }
 
