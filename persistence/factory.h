@@ -1,3 +1,6 @@
+#ifndef PERSISTER_FACTORY_H
+#define PERSISTER_FACTORY_H
+
 namespace Persistence {
   Persister* get(const std::string &fileType) {
     if (fileType == "bmp") {
@@ -7,4 +10,6 @@ namespace Persistence {
     }
     return nullptr;
   }
-};
+}
+
+#endif

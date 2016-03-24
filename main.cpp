@@ -2,21 +2,34 @@
 #include <cstring>
 
 #include "persistence/all.h"
+#include "filters/all.h"
 
 using namespace std;
 
-void handle(Persistence::Image *&image, const char *command, const char *value) {
-  if (strcmp(command, "read") == 0) {
-    image = Persistence::get("bmp")->load("something");
-  } else if (strcmp(command, "apply") == 0) {
-  } else if (strcmp(command, "write") == 0) {
-  }
-}
+class Retouche {
+  public:
+    void execute(const char *command, const char *value) {
+      if (strcmp(command, "read") == 0) {
+        persister = Persistence::get(value);
+      } else if (strcmp(command, "from") == 0) {
+        image = persister->load(value);
+      } else if (strcmp(command, "apply") == 0) {
+        Filters::get(value)->apply(image);
+      } else if (strcmp(command, "write") == 0) {
+        persister = Persistence::get(value);
+      } else if (strcmp(command, "to") == 0) {
+        persister->save(image, value);
+      }
+    }
+  private:
+    Persistence::Persister *persister;
+    Persistence::Image *image;
+};
 
 int main(int argc, char **argv) {
-  Persistence::Image *image;
+  Retouche retouche;
   for (int i = 1; i < argc; ++i) {
     char *command = strtok(argv[i], ":"), *value = strtok(nullptr, ":");
-    handle(image, command, value);
+    retouche.execute(command, value);
   }
 }
