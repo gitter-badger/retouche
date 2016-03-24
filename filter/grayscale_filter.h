@@ -5,8 +5,8 @@
 
 #include "../model/image.h"
 
-namespace Filters {
-class GrayscaleFilter : public Filter {
+namespace Filter {
+class GrayscaleFilter : public Operation {
 public:
     void apply(Model::Image *image) {
         unsigned int poolSize = std::thread::hardware_concurrency();

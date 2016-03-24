@@ -5,8 +5,8 @@
 #include "grayscale_filter.h"
 #include "blur_filter.h"
 
-namespace Filters {
-Filter* get(const std::string &type) {
+namespace Filter {
+Operation* get(const std::string &type) {
     if (type == "grayscale") {
         return new GrayscaleFilter;
     } else if (type == "blur") {

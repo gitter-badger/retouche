@@ -3,8 +3,8 @@
 
 #include "../model/image.h"
 
-namespace Filters {
-class Filter {
+namespace Filter {
+class Operation {
 public:
     virtual void apply(Model::Image *image) = 0;
 };

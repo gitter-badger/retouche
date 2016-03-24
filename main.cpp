@@ -3,7 +3,7 @@
 
 #include "model/image.h"
 #include "persistence/factory.h"
-#include "filters/factory.h"
+#include "filter/factory.h"
 
 class Retouche {
 public:
@@ -13,7 +13,7 @@ public:
         } else if (strcmp(command, "from") == 0) {
             image = persister->load(value);
         } else if (strcmp(command, "apply") == 0) {
-            Filters::get(value)->apply(image);
+            Filter::get(value)->apply(image);
         } else if (strcmp(command, "write") == 0) {
             persister = Persistence::get(value);
         } else if (strcmp(command, "to") == 0) {

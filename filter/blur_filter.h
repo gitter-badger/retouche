@@ -3,8 +3,8 @@
 
 #include "../model/image.h"
 
-namespace Filters {
-class BlurFilter : public Filter {
+namespace Filter {
+class BlurFilter : public Operation {
 public:
     void apply(Model::Image *image) {
         float kernel[3][3] = {
