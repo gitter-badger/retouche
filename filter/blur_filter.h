@@ -5,8 +5,12 @@
 #include "../core/types.h"
 #include "../core/concurrency.h"
 #include "../model/image.h"
+#include "operation.h"
 
 namespace Filter {
+
+// Encapsulates a Gaussian blur filter combines the colors of adjacent
+// pixels using a Gaussian distribution.
 class BlurFilter : public Operation {
 public:
     void apply(Model::Image *image) {
@@ -20,7 +24,7 @@ public:
               greens(image->width() * image->height()),
               blues(image->width() * image->height());
 
-        parallelFor(0, image->width(), 1,
+        parallelFor(0, image->width(),
         [&image, &reds, &greens, &blues, &kernel](int x) -> void {
             for(int y = 0; y < image->height(); y++) {
                 double red = 0.0, green = 0.0, blue = 0.0;

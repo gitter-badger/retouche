@@ -5,6 +5,8 @@
 #include "../include/bitmap_image.hpp"
 
 namespace Persistence {
+
+// Encapsulates a persister that could load and save bitmap images.
 class BitmapPersister : public Persister {
 public:
     Model::Image* load(const char *fileName) {

@@ -1,16 +1,26 @@
 #ifndef SIZED_ARRAY_H
 #define SIZED_ARRAY_H
 
+// Generic dynamically-allocated array.
 template <class T>
 class Array {
 public:
+    // Constructs an array of specific size.
     Array(unsigned size);
+
+    // Deconstructs an array.
     ~Array();
+
+    // Copies an external array.
     T& operator=(const T &other);
+
+    // Moves an external array.
     T& operator=(T &&other);
 
+    // Accesses the element of an array at a specific index.
     T& operator[](const unsigned &i) const;
 
+    // Returns the size of an array.
     unsigned size() const;
 
 private:

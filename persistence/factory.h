@@ -6,6 +6,8 @@
 #include "jpeg_persister.h"
 
 namespace Persistence {
+
+// Creates a persister based on file type name.
 Persister* get(const std::string &fileType) {
     if (fileType == "bmp") {
         return new BitmapPersister;

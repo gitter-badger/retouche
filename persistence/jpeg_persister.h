@@ -4,6 +4,8 @@
 #include "../model/image.h"
 
 namespace Persistence {
+
+// Encapsulates a persister that could load and save JPEG images.
 class JpegPersister : public Persister {
 public:
     Model::Image* load(const char *fileName) {
