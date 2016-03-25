@@ -22,27 +22,28 @@ public:
 
         Model::Image *blurred = new Model::Image(image->width(), image->height());
 
-        for (int y = 0; y < image->height(); y++) {
-            for(int x = 0; x < image->width(); x++) {
-                double red = 0.0, green = 0.0, blue = 0.0;
+        parallelFor(0, image->pixelsCount(),
+        [&image, &blurred, &kernel](unsigned p) {
+            int x = p % image->width();
+            int y = p / image->width();
 
-                for(int i = -1; i < 2; i++) {
-                    for(int j = -1; j < 2; j++) {
-                        if (x+i >= 0 && x+i < image->width() &&
-                                y+j >= 0 && y+j < image->height()) {
+            double red = 0.0, green = 0.0, blue = 0.0;
+            for(int i = -1; i < 2; i++) {
+                for(int j = -1; j < 2; j++) {
+                    if (x+i >= 0 && x+i < image->width() &&
+                            y+j >= 0 && y+j < image->height()) {
 
-                            red += image->red(x+i, y+j)*kernel[i+1][j+1];
-                            green += image->green(x+i, y+j)*kernel[i+1][j+1];
-                            blue += image->blue(x+i, y+j)*kernel[i+1][j+1];
-                        }
+                        red += image->red(x+i, y+j)*kernel[i+1][j+1];
+                        green += image->green(x+i, y+j)*kernel[i+1][j+1];
+                        blue += image->blue(x+i, y+j)*kernel[i+1][j+1];
                     }
                 }
-
-                blurred->setRed(x, y, static_cast<byte>(red));
-                blurred->setGreen(x, y, static_cast<byte>(green));
-                blurred->setBlue(x, y, static_cast<byte>(blue));
             }
-        };
+
+            blurred->setRed(x, y, static_cast<byte>(red));
+            blurred->setGreen(x, y, static_cast<byte>(green));
+            blurred->setBlue(x, y, static_cast<byte>(blue));
+        });
 
         delete image;
         image = blurred;

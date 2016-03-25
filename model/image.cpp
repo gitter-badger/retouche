@@ -23,6 +23,10 @@ unsigned Image::height() const {
     return _height;
 }
 
+unsigned Image::pixelsCount() const {
+    return _width * _height;
+}
+
 byte Image::red(unsigned x, unsigned y) const {
     checkBounds(x, y);
 

@@ -13,12 +13,12 @@ namespace Filter {
 class InverseFilter : public Operation {
 public:
     void apply(Model::Image *&image) {
-        parallelFor(0, image->height(), [&image](unsigned y) -> void {
-            for(unsigned x = 0; x < image->width(); x++) {
-                image->setRed(x, y, BYTE_MAX-image->red(x, y));
-                image->setGreen(x, y, BYTE_MAX-image->green(x, y));
-                image->setBlue(x, y, BYTE_MAX-image->blue(x, y));
-            }
+        parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
+            int x = p % image->width();
+            int y = p / image->width();
+            image->setRed(x, y, BYTE_MAX-image->red(x, y));
+            image->setGreen(x, y, BYTE_MAX-image->green(x, y));
+            image->setBlue(x, y, BYTE_MAX-image->blue(x, y));
         });
     }
 };

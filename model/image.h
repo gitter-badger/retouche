@@ -15,8 +15,12 @@ public:
 
     // Returns the width of the image.
     unsigned width() const;
+
     // Returns the height of the image.
     unsigned height() const;
+
+    // Returns the number of pixels in the image.
+    unsigned pixelsCount() const;
 
 
     // Returns the red color value at a specific position of the image.
