@@ -2,10 +2,10 @@
 #define SIZED_ARRAY_H
 
 template <class T>
-class SizedArray {
+class Array {
 public:
-    SizedArray(unsigned size);
-    ~SizedArray();
+    Array(unsigned size);
+    ~Array();
     T& operator=(const T &other);
     T& operator=(T &&other);
 
@@ -19,19 +19,19 @@ private:
 };
 
 template <class T>
-SizedArray<T>::SizedArray(unsigned size): _size(size) {
+Array<T>::Array(unsigned size): _size(size) {
     _data = new T[size];
 }
 
 template <class T>
-SizedArray<T>::~SizedArray() {
+Array<T>::~Array() {
     if (_data != nullptr) {
         delete []_data;
     }
 }
 
 template <class T>
-T& SizedArray<T>::operator=(const T &other) {
+T& Array<T>::operator=(const T &other) {
     if (this != &other) {
         delete []_data;
         _data = new T[other._size];
@@ -44,7 +44,7 @@ T& SizedArray<T>::operator=(const T &other) {
 }
 
 template <class T>
-T& SizedArray<T>::operator=(T &&other) {
+T& Array<T>::operator=(T &&other) {
     if (this != &other) {
         delete []_data;
         _data = other._data;
@@ -55,12 +55,12 @@ T& SizedArray<T>::operator=(T &&other) {
 }
 
 template <class T>
-unsigned SizedArray<T>::size() const {
+unsigned Array<T>::size() const {
     return _size;
 }
 
 template <class T>
-T& SizedArray<T>::operator[](const unsigned &i) const {
+T& Array<T>::operator[](const unsigned &i) const {
     return _data[i];
 }
 

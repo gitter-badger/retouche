@@ -3,6 +3,7 @@
 
 #include <thread>
 
+#include "../core/types.h"
 #include "../model/image.h"
 
 namespace Filter {
@@ -33,9 +34,9 @@ private:
     static void luminosity(Model::Image *image, unsigned startX, unsigned endX) {
         for (unsigned x = startX; x < endX; x++) {
             for (unsigned y = 0; y < image->height(); y++) {
-                Model::Color grayscaled = 0.21 * image->red(x, y) +
-                                          0.72 * image->green(x, y) +
-                                          0.07 * image->blue(x, y);
+                byte grayscaled = 0.21 * image->red(x, y) +
+                                  0.72 * image->green(x, y) +
+                                  0.07 * image->blue(x, y);
 
                 image->setRed(x, y, grayscaled);
                 image->setGreen(x, y, grayscaled);

@@ -1,7 +1,8 @@
 #ifndef BLUR_FILTER_H
 #define BLUR_FILTER_H
 
-#include "../core/sized_array.h"
+#include "../core/array.h"
+#include "../core/types.h"
 #include "../model/image.h"
 
 namespace Filter {
@@ -14,9 +15,9 @@ public:
             {0.0625, 0.125, 0.0625,}
         };
 
-        SizedArray<Model::Color> reds(image->width() * image->height()),
-                   greens(image->width() * image->height()),
-                   blues(image->width() * image->height());
+        Array<byte> reds(image->width() * image->height()),
+              greens(image->width() * image->height()),
+              blues(image->width() * image->height());
 
         for(int x = 0; x < image->width(); x++) {
             for(int y = 0; y < image->height(); y++) {
@@ -34,9 +35,9 @@ public:
                     }
                 }
 
-                reds[x * image->height() + y] = static_cast<Model::Color>(red);
-                greens[x * image->height() + y] = static_cast<Model::Color>(green);
-                blues[x * image->height() + y] = static_cast<Model::Color>(blue);
+                reds[x * image->height() + y] = static_cast<byte>(red);
+                greens[x * image->height() + y] = static_cast<byte>(green);
+                blues[x * image->height() + y] = static_cast<byte>(blue);
             }
         }
 
@@ -46,5 +47,4 @@ public:
     }
 };
 }
-
 #endif
