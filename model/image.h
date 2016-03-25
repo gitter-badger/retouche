@@ -28,6 +28,8 @@ public:
     // Returns the blue color value at a specific position of the image.
     byte blue(unsigned x, unsigned y) const;
 
+    byte alpha(unsigned x, unsigned y) const;
+
 
     // Sets the red color value at a specific position of the image.
     void setRed(unsigned x, unsigned y, byte color);
@@ -37,6 +39,8 @@ public:
 
     // Sets the blue color value at a specific position of the image.
     void setBlue(unsigned x, unsigned y, byte color);
+
+    void setAlpha(unsigned x, unsigned y, byte alpha);
 
 
     // Sets the red colors for every pixel of the image.
@@ -48,6 +52,8 @@ public:
     // Sets the blue colors for every pixel of the image.
     void setBlues(Array<byte> &colors);
 
+    void setAlphas(Array<byte> &alphas);
+
 private:
     // Verifies that x and y specify a pixel contained inside the image bounds.
     void checkBounds(unsigned x, unsigned y) const;
@@ -56,7 +62,7 @@ private:
     void checkLength(const Array<byte> &colors) const;
 
     unsigned _width, _height;
-    Array<byte> _reds, _greens, _blues;
+    Array<byte> _reds, _greens, _blues, _alphas;
 };
 }
 

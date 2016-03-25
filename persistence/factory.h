@@ -4,6 +4,7 @@
 #include "persister.h"
 #include "bitmap_persister.h"
 #include "jpeg_persister.h"
+#include "png_persister.h"
 
 namespace Persistence {
 
@@ -11,6 +12,8 @@ namespace Persistence {
 Persister* get(const std::string &fileType) {
     if (fileType == "bmp") {
         return new BitmapPersister;
+    } else if (fileType == "png") {
+        return new PNGPersister;
     }
     // Not implemented:
     /* else if (fileType == "jpeg") {

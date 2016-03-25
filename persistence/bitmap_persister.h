@@ -1,6 +1,7 @@
 #ifndef PERSISTENCE_BITMAP_PERSISTER_H
 #define PERSISTENCE_BITMAP_PERSISTER_H
 
+#include "../core/types.h"
 #include "../model/image.h"
 #include "../include/bitmap_image.hpp"
 
@@ -16,7 +17,7 @@ public:
 
         for (unsigned x = 0; x < bmp.width(); ++x) {
             for (unsigned y = 0; y < bmp.height(); ++y) {
-                unsigned char red, green, blue;
+                byte red, green, blue;
                 bmp.get_pixel(x, y, red, green, blue);
 
                 image->setRed(x, y, red);
@@ -33,10 +34,14 @@ public:
 
         for (unsigned x = 0; x < bmp.width(); ++x) {
             for (unsigned y = 0; y < bmp.height(); ++y) {
-                bmp.set_pixel(x, y,
-                              image->red(x, y),
-                              image->green(x, y),
-                              image->blue(x, y));
+                if (image->alpha(x, y) == BYTE_MAX) {
+                    bmp.set_pixel(x, y,
+                                  image->red(x, y),
+                                  image->green(x, y),
+                                  image->blue(x, y));
+                } else {
+                    bmp.set_pixel(x, y, BYTE_MIN, BYTE_MIN, BYTE_MIN);
+                }
             }
         }
 

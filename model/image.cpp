@@ -7,7 +7,8 @@ Image::Image(unsigned width, unsigned height):
     _width(width), _height(height),
     _reds(Array<byte>(width * height)),
     _greens(Array<byte>(width * height)),
-    _blues(Array<byte>(width * height)) {}
+    _blues(Array<byte>(width * height)),
+    _alphas(Array<byte>(width * height))	{}
 
 unsigned Image::width() const {
     return _width;
@@ -35,6 +36,12 @@ byte Image::blue(unsigned x, unsigned y) const {
     return _blues[x * _height + y];
 }
 
+byte Image::alpha(unsigned x, unsigned y) const {
+    checkBounds(x, y);
+
+    return _alphas[x * _height + y];
+}
+
 void Image::setRed(unsigned x, unsigned y, byte color) {
     checkBounds(x, y);
 
@@ -53,6 +60,12 @@ void Image::setBlue(unsigned x, unsigned y, byte color) {
     _blues[x * _height + y] = color;
 }
 
+void Image::setAlpha(unsigned x, unsigned y, byte alpha) {
+    checkBounds(x, y);
+
+    _alphas[x * _height + y] = alpha;
+}
+
 void Image::setReds(Array<byte> &colors) {
     checkLength(colors);
 
@@ -69,6 +82,12 @@ void Image::setBlues(Array<byte> &colors) {
     checkLength(colors);
 
     _blues = colors;
+}
+
+void Image::setAlphas(Array<byte> &alphas) {
+    checkLength(alphas);
+
+    _alphas = alphas;
 }
 
 void Image::checkBounds(unsigned x, unsigned y) const {
