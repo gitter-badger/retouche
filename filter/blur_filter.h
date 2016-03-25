@@ -14,39 +14,64 @@ namespace Filter {
 class BlurFilter : public Operation {
 public:
     void apply(Model::Image *&image) {
-        double kernel[3][3] = {
-            {0.0625, 0.125, 0.0625,},
-            {0.125, 0.25, 0.125,},
-            {0.0625, 0.125, 0.0625,}
-        };
+        int kernelSize = 7;
+        double **kernel = computeKernel(kernelSize);
 
         Model::Image *blurred = new Model::Image(image->width(), image->height());
 
         parallelFor(0, image->pixelsCount(),
-        [&image, &blurred, &kernel](unsigned p) {
+        [&image, &blurred, &kernelSize, &kernel](unsigned p) {
             int x = p % image->width();
             int y = p / image->width();
 
-            double red = 0.0, green = 0.0, blue = 0.0;
-            for(int i = -1; i < 2; i++) {
-                for(int j = -1; j < 2; j++) {
+            byte red = BYTE_MIN, green = BYTE_MIN, blue = BYTE_MIN;
+            int radius = kernelSize/2;
+            for(int i = -radius; i <= radius; i++) {
+                for(int j = -radius; j <= radius; j++) {
                     if (x+i >= 0 && x+i < image->width() &&
                             y+j >= 0 && y+j < image->height()) {
 
-                        red += image->red(x+i, y+j)*kernel[i+1][j+1];
-                        green += image->green(x+i, y+j)*kernel[i+1][j+1];
-                        blue += image->blue(x+i, y+j)*kernel[i+1][j+1];
+                        red += image->red(x+i, y+j)*kernel[i+radius][j+radius];
+                        green += image->green(x+i, y+j)*kernel[i+radius][j+radius];
+                        blue += image->blue(x+i, y+j)*kernel[i+radius][j+radius];
                     }
                 }
             }
 
-            blurred->setRed(x, y, static_cast<byte>(red));
-            blurred->setGreen(x, y, static_cast<byte>(green));
-            blurred->setBlue(x, y, static_cast<byte>(blue));
+            blurred->setRed(x, y, red);
+            blurred->setGreen(x, y, green);
+            blurred->setBlue(x, y, blue);
         });
 
         delete image;
         image = blurred;
+    }
+private:
+    double** computeKernel(unsigned size) {
+        double **kernel = new double*[size];
+        for (unsigned i = 0; i < size; i++) {
+            kernel[i] = new double[size];
+        }
+
+        double sigma = 1.0;
+        double s = 2.0 * sigma * sigma;
+        double sum = 0.0;
+
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                double r = sqrt((x-size/2)*(x-size/2) + (y-size/2)*(y-size/2));
+                kernel[x][y] = (exp(-(r*r)/s))/(M_PI * s);
+                sum += kernel[x][y];
+            }
+        }
+
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
+                kernel[x][y] /= sum;
+            }
+        }
+
+        return kernel;
     }
 };
 }
