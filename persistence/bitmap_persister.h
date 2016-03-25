@@ -1,5 +1,5 @@
-#ifndef BITMAP_PERSISTER_H
-#define BITMAP_PERSISTER_H
+#ifndef PERSISTENCE_BITMAP_PERSISTER_H
+#define PERSISTENCE_BITMAP_PERSISTER_H
 
 #include "../model/image.h"
 #include "../include/bitmap_image.hpp"

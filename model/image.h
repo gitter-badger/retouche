@@ -1,5 +1,5 @@
-#ifndef IMAGE_H
-#define IMAGE_H
+#ifndef MODEL_IMAGE_H
+#define MODEL_IMAGE_H
 
 #include "../core/array.h"
 #include "../core/types.h"

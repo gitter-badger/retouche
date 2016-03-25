@@ -1,5 +1,5 @@
-#ifndef PERSISTER_H
-#define PERSISTER_H
+#ifndef PERSISTENCE_PERSISTER_H
+#define PERSISTENCE_PERSISTER_H
 
 #include "../model/image.h"
 

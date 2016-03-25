@@ -1,5 +1,5 @@
-#ifndef FILTER_H
-#define FILTER_H
+#ifndef FILTER_OPERATION_H
+#define FILTER_OPERATION_H
 
 #include "../model/image.h"
 

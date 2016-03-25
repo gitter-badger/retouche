@@ -1,5 +1,5 @@
-#ifndef BLUR_FILTER_H
-#define BLUR_FILTER_H
+#ifndef FILTER_BLUR_FILTER_H
+#define FILTER_BLUR_FILTER_H
 
 #include "../core/array.h"
 #include "../core/types.h"

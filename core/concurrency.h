@@ -1,5 +1,7 @@
-#ifndef CONCURRENCY_H
-#define CONCURRENCY_H
+#ifndef CORE_CONCURRENCY_H
+#define CORE_CONCURRENCY_H
+
+#include <thread>
 
 // Computes the branches of a for-loop in parallel.
 template<typename F>

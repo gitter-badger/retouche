@@ -1,5 +1,5 @@
-#ifndef JPEG_PERSISTER_H
-#define JPEG_PERSISTER_H
+#ifndef PERSISTENCE_JPEG_PERSISTER_H
+#define PERSISTENCE_JPEG_PERSISTER_H
 
 #include "../model/image.h"
 

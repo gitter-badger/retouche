@@ -1,7 +1,8 @@
-#ifndef INVERT_FILTER_H
-#define INVERT_FILTER_H
+#ifndef FILTER_INVERT_FILTER_H
+#define FILTER_INVERT_FILTER_H
 
 #include "../core/types.h"
+#include "../core/concurrency.h"
 #include "../model/image.h"
 #include "operation.h"
 

@@ -1,5 +1,5 @@
-#ifndef SIZED_ARRAY_H
-#define SIZED_ARRAY_H
+#ifndef CORE_ARRAY_H
+#define CORE_ARRAY_H
 
 // Generic dynamically-allocated array.
 template <class T>

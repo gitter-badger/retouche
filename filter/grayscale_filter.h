@@ -1,7 +1,5 @@
-#ifndef GRAYSCALE_FILTER_H
-#define GRAYSCALE_FILTER_H
-
-#include <thread>
+#ifndef FILTER_GRAYSCALE_FILTER_H
+#define FILTER_GRAYSCALE_FILTER_H
 
 #include "../core/types.h"
 #include "../core/concurrency.h"

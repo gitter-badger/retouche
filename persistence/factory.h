@@ -1,5 +1,5 @@
-#ifndef PERSISTER_FACTORY_H
-#define PERSISTER_FACTORY_H
+#ifndef PERSISTENCE_FACTORY_H
+#define PERSISTENCE_FACTORY_H
 
 #include "persister.h"
 #include "bitmap_persister.h"
