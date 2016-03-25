@@ -12,12 +12,12 @@ namespace Filter {
 // colors of an image.
 class InverseFilter : public Operation {
 public:
-    void apply(Model::Image *image) {
-        parallelFor(0, image->width(), [&image](unsigned w) -> void {
-            for(unsigned h = 0; h < image->height(); h++) {
-                image->setRed(w, h, BYTE_MAX-image->red(w, h));
-                image->setGreen(w, h, BYTE_MAX-image->green(w, h));
-                image->setBlue(w, h, BYTE_MAX-image->blue(w, h));
+    void apply(Model::Image *&image) {
+        parallelFor(0, image->height(), [&image](unsigned y) -> void {
+            for(unsigned x = 0; x < image->width(); x++) {
+                image->setRed(x, y, BYTE_MAX-image->red(x, y));
+                image->setGreen(x, y, BYTE_MAX-image->green(x, y));
+                image->setBlue(x, y, BYTE_MAX-image->blue(x, y));
             }
         });
     }

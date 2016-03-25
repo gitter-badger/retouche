@@ -9,7 +9,7 @@ namespace Filter {
 class Operation {
 public:
     // Applies the filter to a specific image.
-    virtual void apply(Model::Image *image) = 0;
+    virtual void apply(Model::Image *&image) = 0;
 };
 }
 

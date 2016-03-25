@@ -12,7 +12,7 @@ namespace Filter {
 // of an image to shades of gray.
 class GrayscaleFilter : public Operation {
 public:
-    void apply(Model::Image *image) {
+    void apply(Model::Image *&image) {
         parallelFor(0, image->width(), [&image](unsigned x) -> void {
             for (unsigned y = 0; y < image->height(); y++) {
                 byte grayscaled = 0.21 * image->red(x, y) +
