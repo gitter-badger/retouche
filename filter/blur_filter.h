@@ -3,6 +3,7 @@
 
 #include "../core/array.h"
 #include "../core/types.h"
+#include "../core/concurrency.h"
 #include "../model/image.h"
 
 namespace Filter {
@@ -19,14 +20,15 @@ public:
               greens(image->width() * image->height()),
               blues(image->width() * image->height());
 
-        for(int x = 0; x < image->width(); x++) {
+        parallelFor(0, image->width(), 1,
+        [&image, &reds, &greens, &blues, &kernel](int x) -> void {
             for(int y = 0; y < image->height(); y++) {
                 double red = 0.0, green = 0.0, blue = 0.0;
 
                 for(int i = -1; i < 2; i++) {
                     for(int j = -1; j < 2; j++) {
                         if (x+i >= 0 && x+i < image->width() &&
-                                y+j >= 0 && y+j < image->height()) {
+                        y+j >= 0 && y+j < image->height()) {
 
                             red += image->red(x+i, y+j)*kernel[i+1][j+1];
                             green += image->green(x+i, y+j)*kernel[i+1][j+1];
@@ -39,7 +41,7 @@ public:
                 greens[x * image->height() + y] = static_cast<byte>(green);
                 blues[x * image->height() + y] = static_cast<byte>(blue);
             }
-        }
+        });
 
         image->setReds(reds);
         image->setGreens(greens);
@@ -47,4 +49,5 @@ public:
     }
 };
 }
+
 #endif

@@ -54,25 +54,19 @@ void Image::setBlue(unsigned x, unsigned y, byte color) {
 }
 
 void Image::setReds(Array<byte> &colors) {
-    if (_reds.size() != colors.size()) {
-        throw std::invalid_argument("different color lengths");
-    }
+    checkLength(colors);
 
     _reds = colors;
 }
 
 void Image::setGreens(Array<byte> &colors) {
-    if (_greens.size() != colors.size()) {
-        throw std::invalid_argument("different color lengths");
-    }
+    checkLength(colors);
 
     _greens = colors;
 }
 
 void Image::setBlues(Array<byte> &colors) {
-    if (_blues.size() != colors.size()) {
-        throw std::invalid_argument("different color lengths");
-    }
+    checkLength(colors);
 
     _blues = colors;
 }
@@ -80,6 +74,12 @@ void Image::setBlues(Array<byte> &colors) {
 void Image::checkBounds(unsigned x, unsigned y) const {
     if (x >= _width || y >= _height) {
         throw std::invalid_argument("index out of image bounds");
+    }
+}
+
+void Image::checkLength(const Array<byte> &colors) const {
+    if (colors.size() != _width * _height) {
+        throw std::invalid_argument("different color lengths");
     }
 }
 }

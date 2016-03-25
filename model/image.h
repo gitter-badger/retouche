@@ -26,6 +26,7 @@ public:
 
 private:
     void checkBounds(unsigned x, unsigned y) const;
+    void checkLength(const Array<byte> &colors) const;
 
     unsigned _width, _height;
     Array<byte> _reds, _greens, _blues;
