@@ -1,6 +1,9 @@
 #ifndef CORE_ARRAY_H
 #define CORE_ARRAY_H
 
+#include <stdexcept>
+#include <cstring>
+
 // Generic dynamically-allocated array.
 template <class T>
 class Array {
@@ -8,14 +11,17 @@ public:
     // Constructs an array of specific size.
     Array(unsigned size);
 
+    // Copies array data.
+    Array(const Array<T> &that);
+
+    // Moves array data.
+    Array(Array<T> &&that);
+
     // Deconstructs an array.
     ~Array();
 
-    // Copies an external array.
-    T& operator=(const T &other);
-
-    // Moves an external array.
-    T& operator=(T &&other);
+    // Assigns array data.
+    Array<T>& operator=(Array<T> that);
 
     // Accesses the element of an array at a specific index.
     T& operator[](const unsigned &i) const;
@@ -34,6 +40,18 @@ Array<T>::Array(unsigned size): _size(size) {
 }
 
 template <class T>
+Array<T>::Array(const Array<T> &that): _size(that._size) {
+    _data = new T[_size];
+    std::memcpy(_data, that._data, _size);
+}
+
+template <class T>
+Array<T>::Array(Array<T> &&that): _size(that._size) {
+    _data = that._data;
+    that._data = nullptr;
+}
+
+template <class T>
 Array<T>::~Array() {
     if (_data != nullptr) {
         delete []_data;
@@ -41,27 +59,10 @@ Array<T>::~Array() {
 }
 
 template <class T>
-T& Array<T>::operator=(const T &other) {
-    if (this != &other) {
-        delete []_data;
-        _data = new T[other._size];
-        for (unsigned i = 0; i < other._size; i++) {
-            _data[i] = other._data[i];
-        }
-        _size = other._size;
-    }
-    return this;
-}
-
-template <class T>
-T& Array<T>::operator=(T &&other) {
-    if (this != &other) {
-        delete []_data;
-        _data = other._data;
-        other._data = nullptr;
-        _size = other._size;
-    }
-    return this;
+Array<T>& Array<T>::operator=(Array<T> that) {
+    _size = that._size;
+    std::swap(_data, that._data);
+    return *this;
 }
 
 template <class T>
@@ -71,6 +72,10 @@ unsigned Array<T>::size() const {
 
 template <class T>
 T& Array<T>::operator[](const unsigned &i) const {
+    if (i >= _size) {
+        throw std::invalid_argument("index out of bounds");
+    }
+
     return _data[i];
 }
 
