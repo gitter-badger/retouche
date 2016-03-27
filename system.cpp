@@ -26,6 +26,10 @@ void System::read(const char *value) {
 }
 
 void System::from(const char *value) {
+    if (persister == nullptr) {
+        terminate("select image type before specifying the file")
+    }
+
     try {
         image = persister->load(value);
     } catch (std::exception& e) {
@@ -34,6 +38,10 @@ void System::from(const char *value) {
 }
 
 void System::apply(const char *value) {
+    if (image == nullptr) {
+        terminate("read image from file before applying manipulations")
+    }
+
     Manipulation::Operation *operation = Manipulation::get(value);
     nullcheck(operation, "unknown filter '" << value << "'")
 
@@ -50,6 +58,10 @@ void System::write(const char *value) {
 }
 
 void System::to(const char *value) {
+    if (persister == nullptr) {
+        terminate("select image type before specifying the file")
+    }
+
     try {
         persister->save(image, value);
     } catch (std::exception& e) {
