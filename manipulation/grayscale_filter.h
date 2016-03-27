@@ -6,13 +6,13 @@
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Manipulation {
+namespace manipulation {
 
 // Encapsulates a grayscale filter operation that converts the colors
 // of an image to shades of gray.
 class GrayscaleFilter : public Operation {
 public:
-    void apply(Model::Image *&image) {
+    void apply(model::Image *&image) {
         core::parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
             int x = p % image->width();
             int y = p / image->width();

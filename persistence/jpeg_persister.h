@@ -5,17 +5,17 @@
 #include "../include/jpgd.h"
 #include "../include/jpge.h"
 
-namespace Persistence {
+namespace persistence {
 
 // Encapsulates a persister that could load and save JPEG images.
 class JpegPersister : public Persister {
 public:
-    Model::Image* load(const char *fileName) {
+    model::Image* load(const char *fileName) {
         int width, height, composition;
         core::byte *pixels = jpgd::decompress_jpeg_image_from_file(
                                  fileName, &width, &height, &composition, 4);
 
-        Model::Image *image = new Model::Image(width, height);
+        model::Image *image = new model::Image(width, height);
 
         for (unsigned y = 0; y < height; ++y) {
             for (unsigned x = 0; x < width; ++x) {
@@ -33,7 +33,7 @@ public:
         return image;
     }
 
-    void save(Model::Image *image, const char *fileName) {
+    void save(model::Image *image, const char *fileName) {
         core::byte *pixels = new core::byte[image->height() * image->width() * 4];
 
         for (unsigned y = 0; y < image->height(); y++) {

@@ -2,7 +2,8 @@
 
 #include "image.h"
 
-namespace Model {
+namespace model {
+
 Image::Image(unsigned width, unsigned height):
     _width(width), _height(height),
     _reds(core::Array<core::byte>(width * height)),

@@ -6,13 +6,13 @@
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Manipulation {
+namespace manipulation {
 
 // Encapsulates an inverse color filter operation that inverses the
 // colors of an image.
 class InverseFilter : public Operation {
 public:
-    void apply(Model::Image *&image) {
+    void apply(model::Image *&image) {
         core::parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
             int x = p % image->width();
             int y = p / image->width();

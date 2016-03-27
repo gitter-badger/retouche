@@ -9,7 +9,7 @@
 #include "inverse_filter.h"
 #include "flip_operation.h"
 
-namespace Manipulation {
+namespace manipulation {
 
 // Creates manipulation operations based on manipulation name.
 Operation* get(const std::string &type) {

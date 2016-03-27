@@ -4,7 +4,7 @@
 #include "../core/array.h"
 #include "../core/types.h"
 
-namespace Model {
+namespace model {
 
 // A model representing an RGB raster image.
 class Image {

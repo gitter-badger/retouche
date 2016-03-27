@@ -5,15 +5,15 @@
 #include "../model/image.h"
 #include "../include/bitmap_image.hpp"
 
-namespace Persistence {
+namespace persistence {
 
 // Encapsulates a persister that could load and save bitmap images.
 class BitmapPersister : public Persister {
 public:
-    Model::Image* load(const char *fileName) {
+    model::Image* load(const char *fileName) {
         bitmap_image bmp(fileName);
 
-        Model::Image *image = new Model::Image(bmp.width(), bmp.height());
+        model::Image *image = new model::Image(bmp.width(), bmp.height());
 
         for (unsigned x = 0; x < bmp.width(); ++x) {
             for (unsigned y = 0; y < bmp.height(); ++y) {
@@ -29,7 +29,7 @@ public:
         return image;
     }
 
-    void save(Model::Image *image, const char *fileName) {
+    void save(model::Image *image, const char *fileName) {
         bitmap_image bmp(image->width(), image->height());
 
         for (unsigned x = 0; x < bmp.width(); ++x) {

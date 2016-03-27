@@ -6,7 +6,7 @@
 #include "jpeg_persister.h"
 #include "png_persister.h"
 
-namespace Persistence {
+namespace persistence {
 
 // Creates a persister based on file type name.
 Persister* get(const std::string &fileType) {

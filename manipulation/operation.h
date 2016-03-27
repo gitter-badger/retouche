@@ -3,13 +3,13 @@
 
 #include "../model/image.h"
 
-namespace Manipulation {
+namespace manipulation {
 
 // Encapsulates a manipulation operation that could be applied to images.
 class Operation {
 public:
     // Applies the manipulation to a specific image.
-    virtual void apply(Model::Image *&image) = 0;
+    virtual void apply(model::Image *&image) = 0;
 };
 }
 

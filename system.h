@@ -26,8 +26,8 @@ private:
     // Performs a to operation.
     void to(const char *value);
 
-    Persistence::Persister *persister;
-    Model::Image *image;
+    persistence::Persister *persister;
+    model::Image *image;
 };
 
 #endif

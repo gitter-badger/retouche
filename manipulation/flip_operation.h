@@ -6,7 +6,7 @@
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Manipulation {
+namespace manipulation {
 
 // Encapsulates a horizontal/vertical image flip operation.
 class FlipOperation : public Operation {
@@ -15,7 +15,7 @@ public:
 
     FlipOperation(Type type): _type(type) {}
 
-    void apply(Model::Image *&image) {
+    void apply(model::Image *&image) {
         if (_type == Type::horizontal) {
             core::parallelFor(0, image->width()/2, [&image](unsigned x) {
                 unsigned xInversed = image->width() - x - 1;

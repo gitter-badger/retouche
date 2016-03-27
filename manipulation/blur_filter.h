@@ -7,17 +7,17 @@
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Manipulation {
+namespace manipulation {
 
 // Encapsulates a Gaussian blur filter combines the colors of adjacent
 // pixels using a Gaussian distribution.
 class BlurFilter : public Operation {
 public:
-    void apply(Model::Image *&image) {
+    void apply(model::Image *&image) {
         int kernelSize = 7;
         double **kernel = computeKernel(kernelSize);
 
-        Model::Image *blurred = new Model::Image(image->width(), image->height());
+        model::Image *blurred = new model::Image(image->width(), image->height());
 
         core::parallelFor(0, image->pixelsCount(),
         [&image, &blurred, &kernelSize, &kernel](unsigned p) {

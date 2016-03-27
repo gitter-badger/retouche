@@ -21,7 +21,7 @@ void System::execute(const char *command, const char *value) {
 }
 
 void System::read(const char *value) {
-    persister = Persistence::get(value);
+    persister = persistence::get(value);
     nullcheck(persister, "unknown read format '" << value << "'")
 }
 
@@ -42,7 +42,7 @@ void System::apply(const char *value) {
         terminate("read image from file before applying manipulations")
     }
 
-    Manipulation::Operation *operation = Manipulation::get(value);
+    manipulation::Operation *operation = manipulation::get(value);
     nullcheck(operation, "unknown filter '" << value << "'")
 
     try {
@@ -53,7 +53,7 @@ void System::apply(const char *value) {
 }
 
 void System::write(const char *value) {
-    persister = Persistence::get(value);
+    persister = persistence::get(value);
     nullcheck(persister, "unknown write format '" << value << "'")
 }
 

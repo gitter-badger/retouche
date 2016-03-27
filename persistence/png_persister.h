@@ -6,18 +6,18 @@
 #include "../model/image.h"
 #include "../include/lodepng.h"
 
-namespace Persistence {
+namespace persistence {
 
 // Encapsulates a persister that could load and save PNG images.
 class PNGPersister : public Persister {
 public:
-    Model::Image* load(const char *fileName) {
+    model::Image* load(const char *fileName) {
         std::vector<core::byte> pixels;
         unsigned width, height;
 
         lodepng::decode(pixels, width, height, fileName);
 
-        Model::Image *image = new Model::Image(width, height);
+        model::Image *image = new model::Image(width, height);
 
         for (unsigned y = 0; y < height; ++y) {
             for (unsigned x = 0; x < width; ++x) {
@@ -33,7 +33,7 @@ public:
         return image;
     }
 
-    void save(Model::Image *image, const char *fileName) {
+    void save(model::Image *image, const char *fileName) {
         std::vector<core::byte> png;
         std::vector<core::byte> pixels;
 
