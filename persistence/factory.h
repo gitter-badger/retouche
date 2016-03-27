@@ -14,11 +14,9 @@ Persister* get(const std::string &fileType) {
         return new BitmapPersister;
     } else if (fileType == "png") {
         return new PNGPersister;
-    }
-    // Not implemented:
-    /* else if (fileType == "jpeg") {
+    } else if (fileType == "jpeg") {
         return new JpegPersister;
-    } */
+    }
     return nullptr;
 }
 }

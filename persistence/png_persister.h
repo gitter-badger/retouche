@@ -21,10 +21,12 @@ public:
 
         for (unsigned y = 0; y < height; ++y) {
             for (unsigned x = 0; x < width; ++x) {
-                image->setRed(x, y, pixels[(y * width + x) * 4 + 0]);
-                image->setGreen(x, y, pixels[(y * width + x) * 4 + 1]);
-                image->setBlue(x, y, pixels[(y * width + x) * 4 + 2]);
-                image->setAlpha(x, y, pixels[(y * width + x) * 4 + 3]);
+                unsigned pixelIndex = (y * width + x) * 4;
+
+                image->setRed(x, y, pixels[pixelIndex]);
+                image->setGreen(x, y, pixels[pixelIndex + 1]);
+                image->setBlue(x, y, pixels[pixelIndex + 2]);
+                image->setAlpha(x, y, pixels[pixelIndex + 3]);
             }
         }
 
