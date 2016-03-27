@@ -3,6 +3,8 @@
 
 #include <thread>
 
+namespace core {
+
 // Computes the branches of a for-loop in parallel.
 template<typename F>
 void parallelFor(int start, int end, int step, F operation) {
@@ -37,6 +39,7 @@ void parallelFor(int start, int end, int step, F operation) {
 template<typename F>
 void parallelFor(int start, int end, F operation) {
     parallelFor(start, end, 1, operation);
+}
 }
 
 #endif

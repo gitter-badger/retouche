@@ -12,8 +12,8 @@ class JpegPersister : public Persister {
 public:
     Model::Image* load(const char *fileName) {
         int width, height, composition;
-        byte *pixels = jpgd::decompress_jpeg_image_from_file(
-                           fileName, &width, &height, &composition, 4);
+        core::byte *pixels = jpgd::decompress_jpeg_image_from_file(
+                                 fileName, &width, &height, &composition, 4);
 
         Model::Image *image = new Model::Image(width, height);
 
@@ -34,7 +34,7 @@ public:
     }
 
     void save(Model::Image *image, const char *fileName) {
-        byte *pixels = new byte[image->height() * image->width() * 4];
+        core::byte *pixels = new core::byte[image->height() * image->width() * 4];
 
         for (unsigned y = 0; y < image->height(); y++) {
             for (unsigned x = 0; x < image->width(); x++) {

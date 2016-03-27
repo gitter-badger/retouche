@@ -12,7 +12,7 @@ namespace Persistence {
 class PNGPersister : public Persister {
 public:
     Model::Image* load(const char *fileName) {
-        std::vector<byte> pixels;
+        std::vector<core::byte> pixels;
         unsigned width, height;
 
         lodepng::decode(pixels, width, height, fileName);
@@ -34,8 +34,8 @@ public:
     }
 
     void save(Model::Image *image, const char *fileName) {
-        std::vector<byte> png;
-        std::vector<byte> pixels;
+        std::vector<core::byte> png;
+        std::vector<core::byte> pixels;
 
         for (unsigned y = 0; y < image->height(); y++) {
             for (unsigned x = 0; x < image->width(); x++) {

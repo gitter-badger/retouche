@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <cstring>
 
+namespace core {
+
 // Generic dynamically-allocated array.
 template <class T>
 class Array {
@@ -77,6 +79,7 @@ T& Array<T>::operator[](const unsigned &i) const {
     }
 
     return _data[i];
+}
 }
 
 #endif

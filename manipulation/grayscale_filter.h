@@ -13,13 +13,13 @@ namespace Manipulation {
 class GrayscaleFilter : public Operation {
 public:
     void apply(Model::Image *&image) {
-        parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
+        core::parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
             int x = p % image->width();
             int y = p / image->width();
 
-            byte grayscaled = 0.21 * image->red(x, y) +
-                              0.72 * image->green(x, y) +
-                              0.07 * image->blue(x, y);
+            core::byte grayscaled = 0.21 * image->red(x, y) +
+                                    0.72 * image->green(x, y) +
+                                    0.07 * image->blue(x, y);
 
             image->setRed(x, y, grayscaled);
             image->setGreen(x, y, grayscaled);

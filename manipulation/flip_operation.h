@@ -17,13 +17,13 @@ public:
 
     void apply(Model::Image *&image) {
         if (_type == Type::horizontal) {
-            parallelFor(0, image->width()/2, [&image](unsigned x) {
+            core::parallelFor(0, image->width()/2, [&image](unsigned x) {
                 unsigned xInversed = image->width() - x - 1;
                 for (unsigned y = 0; y < image->height(); y++) {
-                    byte red = image->red(x, y),
-                         green = image->green(x, y),
-                         blue = image->blue(x, y),
-                         alpha = image->alpha(x, y);
+                    core::byte red = image->red(x, y),
+                               green = image->green(x, y),
+                               blue = image->blue(x, y),
+                               alpha = image->alpha(x, y);
 
                     image->setRed(x, y, image->red(xInversed, y));
                     image->setGreen(x, y, image->green(xInversed, y));
@@ -37,13 +37,13 @@ public:
                 }
             });
         } else if (_type == Type::vertical) {
-            parallelFor(0, image->height()/2, [&image](unsigned y) {
+            core::parallelFor(0, image->height()/2, [&image](unsigned y) {
                 unsigned yInversed = image->height() - y - 1;
                 for (unsigned x = 0; x < image->width(); x++) {
-                    byte red = image->red(x, y),
-                         green = image->green(x, y),
-                         blue = image->blue(x, y),
-                         alpha = image->alpha(x, y);
+                    core::byte red = image->red(x, y),
+                               green = image->green(x, y),
+                               blue = image->blue(x, y),
+                               alpha = image->alpha(x, y);
 
                     image->setRed(x, y, image->red(x, yInversed));
                     image->setGreen(x, y, image->green(x, yInversed));

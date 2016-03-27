@@ -24,49 +24,49 @@ public:
 
 
     // Returns the red color value at a specific position of the image.
-    byte red(unsigned x, unsigned y) const;
+    core::byte red(unsigned x, unsigned y) const;
 
     // Returns the green color value at a specific position of the image.
-    byte green(unsigned x, unsigned y) const;
+    core::byte green(unsigned x, unsigned y) const;
 
     // Returns the blue color value at a specific position of the image.
-    byte blue(unsigned x, unsigned y) const;
+    core::byte blue(unsigned x, unsigned y) const;
 
-    byte alpha(unsigned x, unsigned y) const;
+    core::byte alpha(unsigned x, unsigned y) const;
 
 
     // Sets the red color value at a specific position of the image.
-    void setRed(unsigned x, unsigned y, byte color);
+    void setRed(unsigned x, unsigned y, core::byte color);
 
     // Sets the green color value at a specific position of the image.
-    void setGreen(unsigned x, unsigned y, byte color);
+    void setGreen(unsigned x, unsigned y, core::byte color);
 
     // Sets the blue color value at a specific position of the image.
-    void setBlue(unsigned x, unsigned y, byte color);
+    void setBlue(unsigned x, unsigned y, core::byte color);
 
-    void setAlpha(unsigned x, unsigned y, byte alpha);
+    void setAlpha(unsigned x, unsigned y, core::byte alpha);
 
 
     // Sets the red colors for every pixel of the image.
-    void setReds(Array<byte> &colors);
+    void setReds(core::Array<core::byte> &colors);
 
     // Sets the green colors for every pixel of the image.
-    void setGreens(Array<byte> &colors);
+    void setGreens(core::Array<core::byte> &colors);
 
     // Sets the blue colors for every pixel of the image.
-    void setBlues(Array<byte> &colors);
+    void setBlues(core::Array<core::byte> &colors);
 
-    void setAlphas(Array<byte> &alphas);
+    void setAlphas(core::Array<core::byte> &alphas);
 
 private:
     // Verifies that x and y specify a pixel contained inside the image bounds.
     void checkBounds(unsigned x, unsigned y) const;
 
     // Verifies that the length of colors is equal to the number of pixels in the image.
-    void checkLength(const Array<byte> &colors) const;
+    void checkLength(const core::Array<core::byte> &colors) const;
 
     unsigned _width, _height;
-    Array<byte> _reds, _greens, _blues, _alphas;
+    core::Array<core::byte> _reds, _greens, _blues, _alphas;
 };
 }
 

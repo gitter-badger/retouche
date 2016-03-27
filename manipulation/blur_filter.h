@@ -19,12 +19,14 @@ public:
 
         Model::Image *blurred = new Model::Image(image->width(), image->height());
 
-        parallelFor(0, image->pixelsCount(),
+        core::parallelFor(0, image->pixelsCount(),
         [&image, &blurred, &kernelSize, &kernel](unsigned p) {
             int x = p % image->width();
             int y = p / image->width();
 
-            byte red = BYTE_MIN, green = BYTE_MIN, blue = BYTE_MIN;
+            core::byte red = core::BYTE_MIN,
+                       green = core::BYTE_MIN,
+                       blue = core::BYTE_MIN;
             int radius = kernelSize/2;
             for(int i = -radius; i <= radius; i++) {
                 for(int j = -radius; j <= radius; j++) {
