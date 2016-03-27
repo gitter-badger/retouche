@@ -4,7 +4,7 @@
 
 #include "system.h"
 #include "persistence/factory.h"
-#include "filter/factory.h"
+#include "manipulation/factory.h"
 
 #define handle(name) if (strcmp(command, #name) == 0) { name(value); return; }
 #define terminate(message) std::cerr << "ERROR: " << message << std::endl; exit(EXIT_FAILURE);
@@ -34,7 +34,7 @@ void System::from(const char *value) {
 }
 
 void System::apply(const char *value) {
-    Filter::Operation *operation = Filter::get(value);
+    Manipulation::Operation *operation = Manipulation::get(value);
     nullcheck(operation, "unknown filter '" << value << "'")
 
     try {

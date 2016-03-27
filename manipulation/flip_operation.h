@@ -1,19 +1,19 @@
-#ifndef FILTER_FLIP_FILTER_H
-#define FILTER_FLIP_FILTER_H
+#ifndef MANIPULATION_FLIP_OPERATION_H
+#define MANIPULATION_FLIP_OPERATION_H
 
 #include "../core/types.h"
 #include "../core/concurrency.h"
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Filter {
+namespace Manipulation {
 
 // Encapsulates a horizontal/vertical image flip operation.
-class FlipFilter : public Operation {
+class FlipOperation : public Operation {
 public:
     enum Type { horizontal, vertical };
 
-    FlipFilter(Type type): _type(type) {}
+    FlipOperation(Type type): _type(type) {}
 
     void apply(Model::Image *&image) {
         if (_type == Type::horizontal) {

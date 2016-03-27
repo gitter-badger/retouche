@@ -1,5 +1,5 @@
-#ifndef FILTER_FACTORY_H
-#define FILTER_FACTORY_H
+#ifndef MANIPULATION_FACTORY_H
+#define MANIPULATION_FACTORY_H
 
 #include <cstring>
 
@@ -7,11 +7,11 @@
 #include "grayscale_filter.h"
 #include "blur_filter.h"
 #include "inverse_filter.h"
-#include "flip_filter.h"
+#include "flip_operation.h"
 
-namespace Filter {
+namespace Manipulation {
 
-// Creates filter operations based on filter type name.
+// Creates manipulation operations based on manipulation name.
 Operation* get(const std::string &type) {
     if (type == "grayscale") {
         return new GrayscaleFilter;
@@ -22,9 +22,9 @@ Operation* get(const std::string &type) {
     } else if (type == "flip") {
         const char *argument = strtok(nullptr, ":");
         if (strcmp(argument, "horizontal") == 0) {
-            return new FlipFilter(FlipFilter::Type::horizontal);
+            return new FlipOperation(FlipOperation::Type::horizontal);
         } else if (strcmp(argument, "vertical") == 0) {
-            return new FlipFilter(FlipFilter::Type::vertical);
+            return new FlipOperation(FlipOperation::Type::vertical);
         }
     }
     return nullptr;

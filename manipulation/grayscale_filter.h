@@ -1,12 +1,12 @@
-#ifndef FILTER_GRAYSCALE_FILTER_H
-#define FILTER_GRAYSCALE_FILTER_H
+#ifndef MANIPULATION_GRAYSCALE_FILTER_H
+#define MANIPULATION_GRAYSCALE_FILTER_H
 
 #include "../core/types.h"
 #include "../core/concurrency.h"
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Filter {
+namespace Manipulation {
 
 // Encapsulates a grayscale filter operation that converts the colors
 // of an image to shades of gray.

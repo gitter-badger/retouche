@@ -1,5 +1,5 @@
-#ifndef FILTER_BLUR_FILTER_H
-#define FILTER_BLUR_FILTER_H
+#ifndef MANIPULATION_BLUR_FILTER_H
+#define MANIPULATION_BLUR_FILTER_H
 
 #include "../core/array.h"
 #include "../core/types.h"
@@ -7,7 +7,7 @@
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Filter {
+namespace Manipulation {
 
 // Encapsulates a Gaussian blur filter combines the colors of adjacent
 // pixels using a Gaussian distribution.

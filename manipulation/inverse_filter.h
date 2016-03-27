@@ -1,12 +1,12 @@
-#ifndef FILTER_INVERT_FILTER_H
-#define FILTER_INVERT_FILTER_H
+#ifndef MANIPULATION_INVERT_FILTER_H
+#define MANIPULATION_INVERT_FILTER_H
 
 #include "../core/types.h"
 #include "../core/concurrency.h"
 #include "../model/image.h"
 #include "operation.h"
 
-namespace Filter {
+namespace Manipulation {
 
 // Encapsulates an inverse color filter operation that inverses the
 // colors of an image.
