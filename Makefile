@@ -24,9 +24,14 @@ system.o: system.cpp
 	$(C) $(CFLAGS) -c system.cpp
 
 # Tests
-test:
-	$(C) $(CFLAGS) -o test core/command_parser.cpp core/command_parser_test.cpp
+test: command_parser_test.o array_test.o
+	$(C) -o test test.cpp command_parser_test.o array_test.o
 	./test
+command_parser_test.o: core/command_parser.cpp core/command_parser_test.cpp
+	$(C) $(CFLAGS) -c core/command_parser.cpp core/command_parser_test.cpp
+	$(L) -r command_parser.o command_parser_test.o -o command_parser_test.o
+array_test.o: core/array_test.cpp
+	$(C) $(CFLAGS) -c core/array_test.cpp
 
 # Core objects
 core.o: $(CORE)

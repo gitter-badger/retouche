@@ -44,7 +44,9 @@ Array<T>::Array(unsigned size): _size(size) {
 template <class T>
 Array<T>::Array(const Array<T> &that): _size(that._size) {
     _data = new T[_size];
-    std::memcpy(_data, that._data, _size);
+    for (unsigned i = 0; i < _size; i++) {
+        _data[i] = that._data[i];
+    }
 }
 
 template <class T>
