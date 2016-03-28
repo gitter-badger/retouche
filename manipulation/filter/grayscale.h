@@ -1,16 +1,17 @@
-#ifndef MANIPULATION_GRAYSCALE_FILTER_H
-#define MANIPULATION_GRAYSCALE_FILTER_H
+#ifndef MANIPULATION_FILTER_GRAYSCALE_H
+#define MANIPULATION_FILTER_GRAYSCALE_H
 
-#include "../core/types.h"
-#include "../core/concurrency.h"
-#include "../model/image.h"
-#include "operation.h"
+#include "../../core/types.h"
+#include "../../core/concurrency.h"
+#include "../../model/image.h"
+#include "../operation.h"
 
 namespace manipulation {
+namespace filter {
 
 // Encapsulates a grayscale filter operation that converts the colors
 // of an image to shades of gray.
-class GrayscaleFilter : public Operation {
+class Grayscale : public Operation {
 public:
     void apply(model::Image *&image) {
         core::parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
@@ -27,6 +28,7 @@ public:
         });
     }
 };
+}
 }
 
 #endif

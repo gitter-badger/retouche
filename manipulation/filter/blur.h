@@ -1,17 +1,18 @@
-#ifndef MANIPULATION_BLUR_FILTER_H
-#define MANIPULATION_BLUR_FILTER_H
+#ifndef MANIPULATION_FILTER_BLUR_H
+#define MANIPULATION_FILTER_BLUR_H
 
-#include "../core/array.h"
-#include "../core/types.h"
-#include "../core/concurrency.h"
-#include "../model/image.h"
-#include "operation.h"
+#include "../../core/array.h"
+#include "../../core/types.h"
+#include "../../core/concurrency.h"
+#include "../../model/image.h"
+#include "../operation.h"
 
 namespace manipulation {
+namespace filter {
 
 // Encapsulates a Gaussian blur filter combines the colors of adjacent
 // pixels using a Gaussian distribution.
-class BlurFilter : public Operation {
+class Blur : public Operation {
 public:
     void apply(model::Image *&image) {
         int kernelSize = 7;
@@ -76,6 +77,7 @@ private:
         return kernel;
     }
 };
+}
 }
 
 #endif

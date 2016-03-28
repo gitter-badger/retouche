@@ -1,19 +1,20 @@
-#ifndef MANIPULATION_FLIP_OPERATION_H
-#define MANIPULATION_FLIP_OPERATION_H
+#ifndef MANIPULATION_TRANSFORMATION_FLIP_H
+#define MANIPULATION_TRANSFORMATION_FLIP_H
 
-#include "../core/types.h"
-#include "../core/concurrency.h"
-#include "../model/image.h"
-#include "operation.h"
+#include "../../core/types.h"
+#include "../../core/concurrency.h"
+#include "../../model/image.h"
+#include "../operation.h"
 
 namespace manipulation {
+namespace transformation {
 
 // Encapsulates a horizontal/vertical image flip operation.
-class FlipOperation : public Operation {
+class Flip : public Operation {
 public:
     enum Type { horizontal, vertical };
 
-    FlipOperation(Type type): _type(type) {}
+    Flip(Type type): _type(type) {}
 
     void apply(model::Image *&image) {
         if (_type == Type::horizontal) {
@@ -62,6 +63,7 @@ public:
 private:
     Type _type;
 };
+}
 }
 
 #endif

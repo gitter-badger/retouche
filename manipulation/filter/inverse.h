@@ -1,16 +1,17 @@
-#ifndef MANIPULATION_INVERT_FILTER_H
-#define MANIPULATION_INVERT_FILTER_H
+#ifndef MANIPULATION_FILTER_INVERSE_H
+#define MANIPULATION_FILTER_INVERSE_H
 
-#include "../core/types.h"
-#include "../core/concurrency.h"
-#include "../model/image.h"
-#include "operation.h"
+#include "../../core/types.h"
+#include "../../core/concurrency.h"
+#include "../../model/image.h"
+#include "../operation.h"
 
 namespace manipulation {
+namespace filter {
 
 // Encapsulates an inverse color filter operation that inverses the
 // colors of an image.
-class InverseFilter : public Operation {
+class Inverse : public Operation {
 public:
     void apply(model::Image *&image) {
         core::parallelFor(0, image->pixelsCount(), [&image](unsigned p) {
@@ -23,6 +24,7 @@ public:
         });
     }
 };
+}
 }
 
 #endif
