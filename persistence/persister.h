@@ -1,6 +1,7 @@
 #ifndef PERSISTENCE_PERSISTER_H
 #define PERSISTENCE_PERSISTER_H
 
+#include <string>
 #include "../model/image.h"
 
 namespace persistence {
@@ -9,10 +10,10 @@ namespace persistence {
 class Persister {
 public:
     // Loads the image file specified by the value of fileName.
-    virtual model::Image* load(const char *fileName) = 0;
+    virtual model::Image* load(const std::string &fileName) = 0;
 
     // Saves image to a file with named with the value of fileName.
-    virtual void save(model::Image *image, const char *fileName) = 0;
+    virtual void save(model::Image *image, const std::string &fileName) = 0;
 };
 };
 

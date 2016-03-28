@@ -4,7 +4,7 @@
 
 namespace persistence {
 
-model::Image* BitmapPersister::load(const char *fileName) {
+model::Image* BitmapPersister::load(const std::string &fileName) {
     bitmap_image bmp(fileName);
 
     model::Image *image = new model::Image(bmp.width(), bmp.height());
@@ -23,7 +23,7 @@ model::Image* BitmapPersister::load(const char *fileName) {
     return image;
 }
 
-void BitmapPersister::save(model::Image *image, const char *fileName) {
+void BitmapPersister::save(model::Image *image, const std::string &fileName) {
     bitmap_image bmp(image->width(), image->height());
 
     for (unsigned x = 0; x < bmp.width(); ++x) {

@@ -5,7 +5,7 @@
 
 namespace persistence {
 
-model::Image* PNGPersister::load(const char *fileName) {
+model::Image* PNGPersister::load(const std::string &fileName) {
     std::vector<core::byte> pixels;
     unsigned width, height;
 
@@ -27,7 +27,7 @@ model::Image* PNGPersister::load(const char *fileName) {
     return image;
 }
 
-void PNGPersister::save(model::Image *image, const char *fileName) {
+void PNGPersister::save(model::Image *image, const std::string &fileName) {
     std::vector<core::byte> png;
     std::vector<core::byte> pixels;
 

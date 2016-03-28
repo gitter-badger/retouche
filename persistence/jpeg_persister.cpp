@@ -4,10 +4,10 @@
 
 namespace persistence {
 
-model::Image* JpegPersister::load(const char *fileName) {
+model::Image* JpegPersister::load(const std::string &fileName) {
     int width, height, composition;
     core::byte *pixels = jpgd::decompress_jpeg_image_from_file(
-                             fileName, &width, &height, &composition, 4);
+                             fileName.c_str(), &width, &height, &composition, 4);
 
     model::Image *image = new model::Image(width, height);
 
@@ -27,7 +27,7 @@ model::Image* JpegPersister::load(const char *fileName) {
     return image;
 }
 
-void JpegPersister::save(model::Image *image, const char *fileName) {
+void JpegPersister::save(model::Image *image, const std::string &fileName) {
     core::byte *pixels = new core::byte[image->height() * image->width() * 4];
 
     for (unsigned y = 0; y < image->height(); y++) {
@@ -41,7 +41,7 @@ void JpegPersister::save(model::Image *image, const char *fileName) {
         }
     }
 
-    jpge::compress_image_to_jpeg_file(fileName, image->width(),
+    jpge::compress_image_to_jpeg_file(fileName.c_str(), image->width(),
                                       image->height(), 4, pixels);
 
     delete []pixels;

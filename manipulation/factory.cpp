@@ -10,11 +10,12 @@
 namespace manipulation {
 
 // Creates manipulation operations based on manipulation name.
-Operation* get(const std::string &type) {
+Operation* get(core::CommandParser &parser) {
+    const std::string type = parser.next();
     std::string manipulationName = type;
 
     if (type == "filter") {
-        const std::string type = strtok(nullptr, ":");
+        const std::string type = parser.next();
 
         if (type == "grayscale") {
             return new filter::Grayscale;
@@ -26,7 +27,7 @@ Operation* get(const std::string &type) {
             manipulationName.append(":" + type);
         }
     } else if (type == "transformation") {
-        const std::string type = strtok(nullptr, ":");
+        const std::string type = parser.next();
 
         if (type == "flip(horizontal)") {
             // FIXME: Change this when command arguments are introduced.

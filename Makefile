@@ -5,7 +5,8 @@ CFLAGS = -std=c++0x -Wall
 # Linker
 L = ld
 
-OBJECTS = main.o system.o model.o persistence.o manipulation.o
+OBJECTS = main.o core.o system.o model.o persistence.o manipulation.o
+CORE = command_parser.o
 MODEL = image.o
 PERSISTENCE = bitmap_persister.o jpeg_persister.o png_persister.o
 MANIPULATION = blur.o grayscale.o inverse.o flip.o
@@ -16,6 +17,12 @@ main.o: main.cpp
 	$(C) $(CFLAGS) -c main.cpp
 system.o: system.cpp
 	$(C) $(CFLAGS) -c system.cpp
+
+# Core objects
+core.o: $(CORE)
+	$(L) -r $(CORE) -o core.o
+command_parser.o: core/command_parser.cpp
+	$(C) $(CFLAGS) -c core/command_parser.cpp
 
 # Model objects
 model.o: $(MODEL)
