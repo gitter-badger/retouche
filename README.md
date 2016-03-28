@@ -1,5 +1,7 @@
 # re-touché
 
+[![Join the chat at https://gitter.im/s2gatev/retouche](https://badges.gitter.im/s2gatev/retouche.svg)](https://gitter.im/s2gatev/retouche?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **re-touché** is an image manipulation tool that applies filters (**grayscale**, **gaussian blur**) to images (**bmp**, **jpeg**).
