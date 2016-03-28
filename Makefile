@@ -43,8 +43,8 @@ jpgd.o: include/jpgd.cpp
 
 # Manipulation objects
 manipulation.o: manipulation/factory.cpp $(MANIPULATION)
-	$(C) $(CFLAGS) -c manipulation/factory.cpp
-	$(L) -r factory.o $(MANIPULATION) -o manipulation.o
+	$(C) $(CFLAGS) -c manipulation/factory.cpp manipulation/exceptions.cpp
+	$(L) -r factory.o exceptions.o $(MANIPULATION) -o manipulation.o
 %.o : manipulation/filter/%.cpp
 	$(C) $(CFLAGS) -c $< -o $@
 %.o: manipulation/transformation/%.cpp

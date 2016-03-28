@@ -13,7 +13,6 @@ public:
     enum Type { horizontal, vertical };
 
     Flip(Type type);
-
     void apply(model::Image *&image);
 
 private:

@@ -42,10 +42,8 @@ void System::apply(const char *value) {
         terminate("read image from file before applying manipulations")
     }
 
-    manipulation::Operation *operation = manipulation::get(value);
-    nullcheck(operation, "unknown filter '" << value << "'")
-
     try {
+        manipulation::Operation *operation = manipulation::get(value);
         operation->apply(image);
     } catch (std::exception& e) {
         terminate(e.what())
