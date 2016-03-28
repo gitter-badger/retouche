@@ -1,5 +1,7 @@
 # re-touché
 
+[![MIT License](http://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **re-touché** is an image manipulation tool that applies filters (**grayscale**, **gaussian blur**) to images (**bmp**, **jpeg**).
 
 ```bash
