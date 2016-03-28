@@ -11,12 +11,22 @@ MODEL = image.o
 PERSISTENCE = bitmap_persister.o jpeg_persister.o png_persister.o
 MANIPULATION = blur.o grayscale.o inverse.o flip.o
 
+.PHONY: test clean
+
+all: test retouche
+
+# Program
 retouche: $(OBJECTS)
 	$(C) -o retouche $(OBJECTS)
 main.o: main.cpp
 	$(C) $(CFLAGS) -c main.cpp
 system.o: system.cpp
 	$(C) $(CFLAGS) -c system.cpp
+
+# Tests
+test:
+	$(C) $(CFLAGS) -o test core/command_parser.cpp core/command_parser_test.cpp
+	./test
 
 # Core objects
 core.o: $(CORE)
@@ -58,4 +68,4 @@ manipulation.o: manipulation/factory.cpp $(MANIPULATION)
 	$(C) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm *o retouche
+	rm *o test retouche

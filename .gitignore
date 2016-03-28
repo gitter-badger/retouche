@@ -1,6 +1,7 @@
 # Compiled program
 *.o
 retouche
+test
 
 # OS X
 .DS_Store
