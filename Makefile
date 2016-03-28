@@ -1,23 +1,58 @@
-CC = g++
+# Compiler
+C = g++
 CFLAGS = -std=c++0x -Wall
 
-OBJECTS = main.o system.o image.o lodepng.o jpge.o jpgd.o
+# Linker
+L = ld
+
+OBJECTS = main.o system.o model.o persistence.o manipulation.o
+MODEL = image.o
+PERSISTENCE = bitmap_persister.o jpeg_persister.o png_persister.o
+MANIPULATION = blur.o grayscale.o inverse.o flip.o
 
 retouche: $(OBJECTS)
-	$(CC) -o retouche $(OBJECTS)
-
+	$(C) -o retouche $(OBJECTS)
 main.o: main.cpp
-	$(CC) $(CFLAGS) -c main.cpp
-image.o: model/image.cpp
-	$(CC) $(CFLAGS) -c model/image.cpp
-lodepng.o: include/lodepng.cpp
-	$(CC) $(CFLAGS) -c include/lodepng.cpp
+	$(C) $(CFLAGS) -c main.cpp
 system.o: system.cpp
-	$(CC) $(CFLAGS) -c system.cpp
+	$(C) $(CFLAGS) -c system.cpp
+
+# Model objects
+model.o: $(MODEL)
+	$(L) -r $(MODEL) -o model.o
+image.o: model/image.cpp
+	$(C) $(CFLAGS) -c model/image.cpp
+
+# Persistence objects
+persistence.o: $(PERSISTENCE)
+	$(L) -r $(PERSISTENCE) -o persistence.o
+bitmap_persister.o: persistence/bitmap_persister.cpp
+	$(C) $(CFLAGS) -c persistence/bitmap_persister.cpp
+jpeg_persister.o: persistence/jpeg_persister.cpp jpge.o jpgd.o
+	$(C) $(CFLAGS) -c persistence/jpeg_persister.cpp
+	$(L) -r jpeg_persister.o jpge.o jpgd.o -o jpeg_persister.o
+png_persister.o: persistence/png_persister.cpp lodepng.o
+	$(C) $(CFLAGS) -c persistence/png_persister.cpp
+	$(L) -r png_persister.o lodepng.o -o png_persister.o
+lodepng.o: include/lodepng.cpp
+	$(C) $(CFLAGS) -c include/lodepng.cpp
 jpge.o: include/jpge.cpp
-	$(CC) $(CFLAGS) -w -I /usr/include/malloc -c include/jpge.cpp
+	$(C) $(CFLAGS) -w -I /usr/include/malloc -c include/jpge.cpp
 jpgd.o: include/jpgd.cpp
-	$(CC) $(CFLAGS) -w -c include/jpgd.cpp
+	$(C) $(CFLAGS) -w -c include/jpgd.cpp
+
+# Manipulation objects
+manipulation.o: manipulation/factory.cpp $(MANIPULATION)
+	$(C) $(CFLAGS) -c manipulation/factory.cpp
+	$(L) -r factory.o $(MANIPULATION) -o manipulation.o
+blur.o: manipulation/filter/blur.cpp
+	$(C) $(CFLAGS) -c manipulation/filter/blur.cpp
+grayscale.o: manipulation/filter/grayscale.cpp
+	$(C) $(CFLAGS) -c manipulation/filter/grayscale.cpp
+inverse.o: manipulation/filter/inverse.cpp
+	$(C) $(CFLAGS) -c manipulation/filter/inverse.cpp
+flip.o: manipulation/transformation/flip.cpp
+	$(C) $(CFLAGS) -c manipulation/transformation/flip.cpp
 
 clean:
 	rm *o retouche
