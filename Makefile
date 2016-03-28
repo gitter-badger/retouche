@@ -45,14 +45,10 @@ jpgd.o: include/jpgd.cpp
 manipulation.o: manipulation/factory.cpp $(MANIPULATION)
 	$(C) $(CFLAGS) -c manipulation/factory.cpp
 	$(L) -r factory.o $(MANIPULATION) -o manipulation.o
-blur.o: manipulation/filter/blur.cpp
-	$(C) $(CFLAGS) -c manipulation/filter/blur.cpp
-grayscale.o: manipulation/filter/grayscale.cpp
-	$(C) $(CFLAGS) -c manipulation/filter/grayscale.cpp
-inverse.o: manipulation/filter/inverse.cpp
-	$(C) $(CFLAGS) -c manipulation/filter/inverse.cpp
-flip.o: manipulation/transformation/flip.cpp
-	$(C) $(CFLAGS) -c manipulation/transformation/flip.cpp
+%.o : manipulation/filter/%.cpp
+	$(C) $(CFLAGS) -c $< -o $@
+%.o: manipulation/transformation/%.cpp
+	$(C) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm *o retouche
