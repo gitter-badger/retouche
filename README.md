@@ -10,8 +10,8 @@ retouche read:bmp from:samples/picture.bmp apply:transformation:flip(horizontal)
 
 **re-touché** is a command-line application driven by command statements.
 
-The `read:?` command specifies the format of the file being loaded. The `?` should be one of `bmp`, `jpeg`, `png`.
-The `from:?` command specifies the location of the file used to load the image.
-The `write:?` command specifies the format of the file being saved. The `?` should be one of `bmp`, `jpeg`, `png`.
-The `to:?` command specifies the location of the file the image should be saved to.
-The `apply:?` command performs an image manipulation. The `?` should be one of `filter:blur`, `filter:inverse`, `filter:grayscale`, `transformation:flip(?) where ? is either horizontal or vertical`.
+* The `read:?` command specifies the format of the file being loaded. The `?` should be one of `bmp`, `jpeg`, `png`.
+* The `from:?` command specifies the location of the file used to load the image.
+* The `write:?` command specifies the format of the file being saved. The `?` should be one of `bmp`, `jpeg`, `png`.
+* The `to:?` command specifies the location of the file the image should be saved to.
+* The `apply:?` command performs an image manipulation. The `?` should be one of `filter:blur`, `filter:inverse`, `filter:grayscale`, `transformation:flip(?) where ? is either horizontal or vertical`.
